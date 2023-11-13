@@ -1,0 +1,15 @@
+{
+  "name": "employeetracker-week12-challenge",
+  "version": "1.0.0",
+  "description": "commandline content management system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^2.2.5",
+    "inquirer": "^8.2.4"
+  }
+}
