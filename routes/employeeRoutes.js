@@ -1,7 +1,6 @@
-const router = require('express').Router();
 const db = require('../config/connection').mysql();
 
-viewAllEmps () = router.get('/', (req, res) => {
+function viewAllEmps () {
     const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary AS salary, department.name AS department,
     manager.first_name AS manager FROM employee 
     LEFT JOIN employee manager ON  manager.id = employee.manager_id
@@ -14,20 +13,18 @@ viewAllEmps () = router.get('/', (req, res) => {
         }
         console.table(employees);
       });
-});
+};
 
-addEmp () = router.post('/', ({ body }, res) => {
-    if(!body || !body.employee.id) {
-        return res.status(500).json({ message: 'error', error: err.message });
-    }
+function addEmp (first, last, role, manager) {
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
     VALUES (?, ?, ?, ?)`;
-    db.query(sql, { body }, (err, employee) => {
+    const params = [first, last, role, manager]
+    db.query(sql, params, (err, employee) => {
         if (err) {
             return res.status(500).json({ message: 'error', error: err.message});
         }
         console.table(employee)
     });
-});
+};
 
 module.exports = viewAllEmps() , addEmp();

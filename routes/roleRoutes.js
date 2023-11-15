@@ -1,7 +1,6 @@
-const router = require('express').Router();
 const db = require('../config/connection').mysql();
 
-viewRoles() = router.get('/', (req, res) => {
+function viewRoles() {
     const sql = `SELECT roles.id, roles.title, departments.name AS department, roles.salary
     FROM roles
     JOIN departments
@@ -11,33 +10,30 @@ viewRoles() = router.get('/', (req, res) => {
         return res.status(500).json({ message: 'error', error: err.message });
         }
         console.table(roles);
-     });
-});
+     }
+     );
+};
 
-addRole () = router.post('/', ({ body }, res) => {
-    if (!body || !body.role.id) {
-        return res.status(500).json({ message: 'error', error: err.message });
-    }
+function addRole (role, salary, department) {
     const sql = `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?);`;
-    db.query(sql, { body }, (err, role) => {
+    const params = [role, salary, department];
+    db.query(sql, params, (err, role) => {
         if (err) {
             return res.status(500).json({ message: 'error', error: err.message});
         }
         console.table(role)
     });
-});
+};
 
-updateEmpRole () = router.put('/', ({ body }, res) => {
-    if (!body || !body.employee.id) {
-        return res.status(500).json({ message: 'error', err: error.message });
-    }
+function updateEmpRole (role, department) {
     const sql = `UPDATE employees SET role_id = ? WHERE id = ?;`;
-    db.query(sql, { body }, (err, newRole) => {
+    const params = [role, department]
+    db.query(sql, params, (err, newRole) => {
         if (err) {
             return res.status(500).json({ message: 'error', error: err.message });
         }
         console.table(newRole)
     });
-});
+};
 
 module.exports = viewRoles(), addRole(), updateEmpRole();
