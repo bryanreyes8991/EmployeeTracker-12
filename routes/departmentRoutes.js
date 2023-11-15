@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('../config/connection').mysql();
 
 viewAllDpts () = router.get('/', (req, res) => {
-    const sql = `SELECT id, department_name FROM department`;
+    const sql = `SELECT id, department_name FROM department;`;
     db.query(sql, (err, departments) => {
         if (err) {
             return res.status(500).json({ message: 'error', error: err.message });
@@ -16,7 +16,7 @@ addDpt () = router.post('/', ({ body }, res) => {
         return res.status(500).json({ message: 'error', error: err.message});
     }
     const sql = `INSERT INTO department (department_name) VALUES (?)`;
-    const department = [body.deparment_name];
+    const params = [body.deparment_name];
     db.query(sql, params, (err, department) => {
         if (err) {
             return res.status(500).json({ message: 'error', error: err.message });

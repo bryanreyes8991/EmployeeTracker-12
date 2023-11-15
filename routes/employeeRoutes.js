@@ -17,7 +17,7 @@ viewAllEmps () = router.get('/', (req, res) => {
 });
 
 addEmp () = router.post('/', ({ body }, res) => {
-    if(!body || body.employee.id) {
+    if(!body || !body.employee.id) {
         return res.status(500).json({ message: 'error', error: err.message });
     }
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
