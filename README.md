@@ -1,0 +1,4 @@
+# CLI EMPLOYEE TRACKER
+## OVERVIEW 
+This application is a content management system that uses the MYSQL database & the inquirer package to provide an interface for our database information. These type of applications are very common through many different kinds of industries. I myself had used a database with the same kind of bash interface to find, move & update information on products in a warehouse and I wasn't even aware of the technology I had already been familiar with until I learned about databases through the bootcamp! It's amazing how such a simple software program can turn into something dire for the infrasctructure of an entire corporation. The way that we can relate data on the fly definitely makes knowing how to maneuver through these database systems an essential skill I never knew I needed.
+
